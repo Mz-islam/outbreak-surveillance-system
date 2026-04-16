@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+}
+
+/* Login / Register pages */
+.login-bg {
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    min-height: 100vh;
+}
+
+/* Admin dashboard page */
+.dashboard-bg {
+    background-color: #f4f7fb;
+    min-height: 100vh;
+}
+
+/* Auth card */
+.auth-card {
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: none;
+}
+
+/* Admin main card */
+.admin-card {
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border: none;
+}
+
+/* Common page title */
+.page-title {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Dashboard cards */
+.card-box {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Table wrapper */
+.table-container {
+    background: #fff;
+    padding: 22px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.table thead th {
+    vertical-align: middle;
+}
+
+/* Risk map */
+#riskMap {
+    height: 520px;
+    border-radius: 16px;
+}
+
+/* Map legend */
+.legend-box {
+    background: #fff;
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.color-extreme {
+    background: red;
+}
+
+.color-high {
+    background: orange;
+}
+
+.color-low {
+    background: blue;
+}
