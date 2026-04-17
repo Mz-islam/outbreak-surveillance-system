@@ -4,6 +4,11 @@ include('config.php');
 
 $message = "";
 
+// Show timeout message
+if (isset($_GET['timeout'])) {
+    $message = "<div class='alert alert-warning'>Session expired due to inactivity. Please login again.</div>";
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = trim($_POST['user_id']);
     $password = trim($_POST['password']);
@@ -22,6 +27,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['role'] = $row['role'];
+                $_SESSION['last_activity'] = time();
+
+                $admin_id = $row['admin_id'];
+                $login_user_id = $row['user_id'];
+
+                // Insert login history
+                $history_sql = "INSERT INTO admin_login_history (admin_id, user_id, login_time, session_status)
+                                VALUES ('$admin_id', '$login_user_id', NOW(), 'ACTIVE')";
+                mysqli_query($conn, $history_sql);
+
+                $_SESSION['history_id'] = mysqli_insert_id($conn);
 
                 header("Location: admin_dashboard.php");
                 exit();
