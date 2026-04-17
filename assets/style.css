@@ -1,97 +1,451 @@
+/* ===============================
+   GLOBAL
+================================= */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f8f9fa;
+    font-family: 'Inter', sans-serif;
+    color: #182230;
+    background: #f6f6f3;
 }
 
-/* Login / Register pages */
-.login-bg {
-    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===============================
+   LAYOUT
+================================= */
+.ui-body {
     min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(194, 238, 229, 0.45), transparent 30%),
+        radial-gradient(circle at top right, rgba(225, 231, 255, 0.45), transparent 32%),
+        #f7f7f4;
 }
 
-/* Admin dashboard page */
-.dashboard-bg {
-    background-color: #f4f7fb;
-    min-height: 100vh;
+.main-wrap {
+    max-width: 1380px;
+    margin: 0 auto;
+    padding: 28px 24px 50px;
 }
 
-/* Auth card */
-.auth-card {
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    border: none;
+/* ===============================
+   TOP NAV
+================================= */
+.top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 82px;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* Admin main card */
-.admin-card {
-    border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    border: none;
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
-/* Common page title */
-.page-title {
+.brand-mark {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #80e1d2, #8ea7ff);
+    box-shadow: 0 0 0 8px rgba(128, 225, 210, 0.18);
+}
+
+.brand-text h1 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.brand-text span {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.76rem;
+    color: #667085;
+    font-weight: 500;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+}
+
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ddefff, #d8f8f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #243042;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+}
+
+.user-details strong {
+    font-size: 0.9rem;
     font-weight: 700;
+}
+
+.user-details span {
+    font-size: 0.74rem;
+    color: #667085;
+}
+
+.logout-btn {
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(24, 34, 48, 0.12);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.66);
+    color: #1b2532;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.logout-btn:hover {
+    transform: translateY(-1px);
+    background: #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ===============================
+   HERO PANEL
+================================= */
+.hero-panel {
+    display: grid;
+    grid-template-columns: 1.6fr 0.7fr;
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.hero-copy,
+.hero-side-card {
+    background: rgba(255, 255, 255, 0.76);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 28px;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.05);
+}
+
+.hero-copy {
+    padding: 30px 32px;
+}
+
+.hero-label {
+    margin: 0 0 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #7a8696;
+}
+
+.hero-copy h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+    font-weight: 800;
+    max-width: 760px;
+}
+
+.hero-copy p:last-child {
+    margin: 16px 0 0;
+    max-width: 740px;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #5f6d7f;
+}
+
+.hero-side-card {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+}
+
+.mini-stat {
+    padding: 14px 16px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #ffffff, #f4f7fb);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mini-stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #7a8696;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+}
+
+.mini-stat strong {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* ===============================
+   DASHBOARD GRID
+================================= */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 18px;
+}
+
+.dash-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+    padding: 24px;
+    border-radius: 28px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.dash-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 48px rgba(0, 0, 0, 0.10);
+}
+
+.card-large {
+    grid-column: span 1;
+    grid-row: span 2;
+    min-height: 460px;
+}
+
+.card-small {
+    min-height: 220px;
+}
+
+.card-medium {
+    min-height: 220px;
+}
+
+.card-wide {
+    grid-column: span 3;
+    min-height: 210px;
+}
+
+/* ===============================
+   CARD COLORS
+================================= */
+.card-main {
+    background: linear-gradient(180deg, #ffffff, #eef3ff);
+}
+
+.card-climate {
+    background: linear-gradient(180deg, #effcf8, #d8f4eb);
+}
+
+.card-disease {
+    background: linear-gradient(180deg, #fff8ef, #ffe0cf);
+}
+
+.card-region {
+    background: linear-gradient(180deg, #f7fbff, #e6f1ff);
+}
+
+.card-analysis {
+    background: linear-gradient(180deg, #f7f8fb, #eaedf4);
+}
+
+.card-risk {
+    background: linear-gradient(180deg, #fff2f4, #ffd9e1);
+}
+
+/* ===============================
+   CARD CONTENT
+================================= */
+.card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
     margin-bottom: 20px;
 }
 
-/* Dashboard cards */
-.card-box {
-    border: none;
+.card-icon svg {
+    width: 25px;
+    height: 25px;
+}
+
+.card-content {
+    max-width: 90%;
+}
+
+.card-kicker {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6d7a8a;
+}
+
+.card-content h3 {
+    margin: 0 0 10px;
+    font-size: 1.65rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+}
+
+.card-content p {
+    margin: 0;
+    font-size: 0.97rem;
+    color: #5f6d7f;
+    line-height: 1.65;
+}
+
+/* ===============================
+   SMALL VISUAL DETAILS
+================================= */
+.card-line {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    height: 56px;
     border-radius: 18px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background:
+        linear-gradient(120deg, rgba(111, 141, 255, 0.06), rgba(111, 141, 255, 0.18)),
+        linear-gradient(transparent 55%, rgba(255, 255, 255, 0.55) 55%);
+    border: 1px solid rgba(255, 255, 255, 0.45);
 }
 
-/* Table wrapper */
-.table-container {
-    background: #fff;
-    padding: 22px;
-    border-radius: 18px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.risk-dots {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    gap: 10px;
 }
 
-.table thead th {
-    vertical-align: middle;
+.risk-dots span {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(190, 43, 68, 0.22);
+    border: 1px solid rgba(190, 43, 68, 0.15);
 }
 
-/* Risk map */
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 1200px) {
+    .hero-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card-large {
+        grid-column: span 2;
+        grid-row: span 1;
+        min-height: 260px;
+    }
+
+    .card-wide {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-nav {
+        height: auto;
+        padding: 14px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .main-wrap {
+        padding: 20px 14px 40px;
+    }
+
+    .hero-copy {
+        padding: 24px 22px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-large,
+    .card-wide {
+        grid-column: span 1;
+        min-height: 220px;
+    }
+
+    .dash-card {
+        min-height: 220px;
+    }
+
+    .card-content {
+        max-width: 100%;
+    }
+
+    .hero-copy h2 {
+        font-size: 2rem;
+    }
+}
+
 #riskMap {
     height: 520px;
     border-radius: 16px;
-}
-
-/* Map legend */
-.legend-box {
-    background: #fff;
-    padding: 12px 16px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    display: inline-block;
-    margin-bottom: 16px;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-}
-
-.legend-color {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-}
-
-.color-extreme {
-    background: red;
-}
-
-.color-high {
-    background: orange;
-}
-
-.color-low {
-    background: blue;
 }
