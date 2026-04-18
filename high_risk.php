@@ -74,9 +74,6 @@ $tableResult = mysqli_query($conn, $tableSql);
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
             <div>
                 <h4 class="mb-2">Risk Visualization by Region</h4>
-                <p class="text-muted mb-0">
-                    Hover করলে tooltip, click করলে zoom + নিচের table filter হবে।
-                </p>
             </div>
 
             <?php if ($selectedRegion !== ''): ?>
@@ -392,7 +389,7 @@ $tableResult = mysqli_query($conn, $tableSql);
         })
         .catch(error => {
             console.error('GeoJSON load error:', error);
-            statusBox.textContent = 'Map load hocche na. Check koro: assets/bangladesh.geojson file ache naki, ar file path thik ache naki. Error: ' + error.message;
+            statusBox.textContent = 'Map is not loading,check map file location path. Error: ' + error.message;
         });
 </script>
 

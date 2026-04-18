@@ -72,7 +72,14 @@ while ($row = mysqli_fetch_assoc($r3)) {
     </div>
 </div>
 
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Percentage labels for pie chart -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
 <script>
+    // Region-wise Bar Chart
     new Chart(document.getElementById('regionCasesChart'), {
         type: 'bar',
         data: {
@@ -83,9 +90,24 @@ while ($row = mysqli_fetch_assoc($r3)) {
                 borderWidth: 1
             }]
         },
-        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                },
+                x: {
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 45,
+                        minRotation: 45
+                    }
+                }
+            }
+        }
     });
 
+    // Disease-wise Pie Chart with Percentage
     new Chart(document.getElementById('diseasePieChart'), {
         type: 'pie',
         data: {
@@ -94,9 +116,27 @@ while ($row = mysqli_fetch_assoc($r3)) {
                 data: <?php echo json_encode($diseaseTotals); ?>
             }]
         },
-        options: { responsive: true }
+        options: {
+            responsive: true,
+            plugins: {
+                datalabels: {
+                    formatter: (value, context) => {
+                        let total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        let percentage = (value / total * 100).toFixed(1) + "%";
+                        return percentage;
+                    },
+                    color: '#000',
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
     });
 
+    // Monthly Dengue Trend Line Chart
     new Chart(document.getElementById('dengueLineChart'), {
         type: 'line',
         data: {
@@ -108,7 +148,14 @@ while ($row = mysqli_fetch_assoc($r3)) {
                 tension: 0.3
             }]
         },
-        options: { responsive: true, scales: { y: { beginAtZero: true } } }
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
     });
 </script>
 
